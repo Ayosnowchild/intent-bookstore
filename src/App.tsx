@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Link, Route, Routes } from "react-router-dom";
+import CreateBook from "./components/CreateBook";
+import Books from "./components/Books";
+import BookDetails from "./components/BookDetails";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className=" flex flex-col gap-8 w-full px-[4%] py-8">
+      <div className=" flex justify-between items-center">
+        <Link to={"/"}>
+          <h1 className=" text-2xl font-semibold">Intent Book Store</h1>
+        </Link>
+        <Link
+          to={"/create"}
+          className=" border p-4 rounded-md hover:bg-gray-200"
         >
-          Learn React
-        </a>
-      </header>
+          Add
+        </Link>
+      </div>
+      <Routes>
+        <Route path="/" element={<Books />} />
+        <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/create" element={<CreateBook />} />
+      </Routes>
     </div>
   );
 }
